@@ -6,93 +6,152 @@
 <title>OKR</title>
 <link rel="icon" type="image/png" href="O.png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@400;500;700&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black: #111;
-    --gray: #777;
+    --dark: #202020;
+    --body: #222222;
+    --gray: #888;
+    --light-gray: #bbb;
     --white: #fff;
-    --serif: 'EB Garamond', Georgia, serif;
-    --sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --display: 'Arial', sans-serif;
+    --sans: 'Archivo', 'Arial Narrow', Arial, sans-serif;
   }
 
-  html { font-size: 18px; scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; font-size: 16px; }
 
   body {
-    font-family: var(--serif);
-    background: var(--white);
-    color: var(--black);
-    line-height: 1.6;
-  }
-
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  header {
-    padding: 4rem 0 3rem;
-    border-bottom: 1px solid #e0e0e0;
-  }
-
-  .site-name {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    font-weight: 400;
-    letter-spacing: 0.02em;
-  }
-
-  nav {
-    margin-top: 0.5rem;
     font-family: var(--sans);
-    font-size: 0.72rem;
-    letter-spacing: 0.12em;
+    background: var(--white);
+    color: var(--body);
+    line-height: 1.5;
+    font-weight: 400;
+    position: relative;
+    min-height: 100vh;
+  }
+
+  /* Pistematriisi tausta — 10% jako näyttöleveyteen */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(circle, #c8c8c8 1.4px, transparent 1.6px);
+    background-size: 10vw 10vw;
+    background-position: 0 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.55;
+  }
+
+  /* Otsikko vasemmassa reunassa */
+  .header-display {
+    width: 88%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 0 0;
+  }
+
+  /* Sisältösarake — keskellä, hieman sisennettynä otsikon vasemmasta reunasta (n. O-kirjaimen verran) */
+  .container {
+    width: 50%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  header {
+    padding: 10rem 0 5rem;
+  }
+
+  .display-name {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: clamp(4rem, 12vw, 12rem);
+    line-height: 0.92;
+    letter-spacing: -0.025em;
+    color: var(--dark);
     text-transform: uppercase;
-    color: var(--gray);
+  }
+
+  .display-name span {
+    display: block;
+  }
+
+  /* Nav row */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0;
+    font-family: var(--sans);
+    font-size: clamp(0.8rem, 1.1vw, 1rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--body);
+    font-weight: 700;
   }
 
   nav a {
-    color: var(--gray);
+    color: var(--body);
     text-decoration: none;
-    margin-right: 2rem;
-    transition: color 0.2s;
+    margin-right: 1.5rem;
     cursor: pointer;
+    transition: color 0.2s;
   }
 
-  nav a:hover { color: var(--black); }
+  nav a:hover { color: var(--gray); }
 
+  .lang-toggle button {
+    background: none;
+    border: none;
+    font: inherit;
+    color: var(--gray);
+    cursor: pointer;
+    padding: 0 0.15rem;
+    transition: color 0.2s;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .lang-toggle button.active { color: var(--body); }
+  .lang-toggle button:hover { color: var(--body); }
+  .lang-sep { color: var(--light-gray); margin: 0 0.1rem; }
+
+  /* INTRO */
   .intro {
-    padding: 4rem 0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 6.5rem 0 8rem;
   }
 
   .intro-text {
-    font-size: 1.35rem;
-    line-height: 1.7;
+    font-family: var(--sans);
+    font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+    line-height: 1.55;
     font-weight: 400;
+    color: var(--body);
+    max-width: 38em;
   }
-
-  .intro-text em { font-style: italic; }
 
   section {
-    padding: 4rem 0;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 6.5rem 0;
   }
-
-  section:last-of-type { border-bottom: none; }
 
   .section-label {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
+    font-size: clamp(0.78rem, 1vw, 0.9rem);
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 2.5rem;
+    color: var(--body);
+    margin-bottom: 3rem;
   }
 
+  /* SERVICES */
   .services-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -100,60 +159,24 @@
   }
 
   .service-title {
-    font-size: 0.95rem;
+    font-family: var(--sans);
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     font-weight: 400;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--body);
   }
 
   .service-desc {
-    font-size: 0.85rem;
-    color: var(--gray);
-    line-height: 1.65;
-    font-style: italic;
-  }
-
-  .contact-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .contact-table td {
-    padding: 0.6rem 0;
-    font-size: 0.95rem;
-    vertical-align: top;
-    border-top: 1px solid #ebebeb;
-  }
-
-  .contact-table tr:last-child td {
-    border-bottom: 1px solid #ebebeb;
-  }
-
-  .contact-table td:first-child {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+    font-size: clamp(0.85rem, 1vw, 0.95rem);
     color: var(--gray);
-    width: 36%;
-    padding-top: 0.75rem;
+    line-height: 1.55;
+    font-weight: 400;
   }
 
-  .contact-table a {
-    color: var(--black);
-    text-decoration: none;
-    border-bottom: 1px solid #ccc;
-    transition: border-color 0.2s;
-  }
-
-  .contact-table a:hover { border-color: var(--black); }
-
+  /* CV / PORTFOLIO */
   .download-item {
-    padding: 1.5rem 0;
-    border-top: 1px solid #e8e8e8;
-  }
-
-  .download-item:last-child {
-    border-bottom: 1px solid #e8e8e8;
+    padding: 1.75rem 0;
   }
 
   .download-header {
@@ -161,56 +184,78 @@
     grid-template-columns: 1fr auto;
     align-items: baseline;
     gap: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
 
   .download-title {
-    font-size: 1rem;
+    font-family: var(--sans);
+    font-size: clamp(0.95rem, 1.2vw, 1.1rem);
     font-weight: 400;
+    color: var(--body);
   }
 
   .download-tag {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--gray);
   }
 
-  .download-gate {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  .form-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem 1.5rem;
   }
 
-  .download-gate input[type="email"] {
-    font-family: var(--serif);
-    font-size: 0.85rem;
-    color: var(--black);
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .field-label {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 0.4rem;
+  }
+
+  .field-label .required { color: var(--body); }
+
+  .form-fields input {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--body);
     border: none;
     border-bottom: 1px solid #ccc;
     outline: none;
-    padding: 0.25rem 0;
-    width: 220px;
+    padding: 0.3rem 0;
+    width: 100%;
     background: transparent;
     transition: border-color 0.2s;
   }
 
-  .download-gate input[type="email"]::placeholder {
-    color: #bbb;
-    font-style: italic;
-  }
+  .form-fields input:focus { border-color: var(--body); }
 
-  .download-gate input[type="email"]:focus {
-    border-color: var(--black);
+  .download-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.75rem;
   }
 
   .download-btn {
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #bbb;
+    color: var(--light-gray);
     background: none;
     border: none;
     cursor: not-allowed;
@@ -220,7 +265,7 @@
   }
 
   .download-btn.active {
-    color: var(--black);
+    color: var(--body);
     cursor: pointer;
   }
 
@@ -230,171 +275,307 @@
   }
 
   .download-note {
+    font-family: var(--sans);
     font-size: 0.78rem;
-    color: #bbb;
-    font-style: italic;
-    margin-top: 0.5rem;
+    color: var(--light-gray);
+    font-weight: 400;
+    letter-spacing: 0.04em;
     min-height: 1rem;
   }
 
-  .download-note.valid { color: #aaa; }
+  .download-note.valid { color: var(--gray); }
 
-  footer {
-    padding: 2.5rem 0;
+  /* CONTACT */
+  .contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    max-width: 600px;
   }
 
-  footer p {
+  .contact-table td {
+    padding: 0.8rem 0;
     font-family: var(--sans);
-    font-size: 0.68rem;
-    letter-spacing: 0.08em;
-    color: #bbb;
+    font-size: clamp(0.92rem, 1.1vw, 1rem);
+    font-weight: 400;
+    vertical-align: top;
+    border-top: 1px solid #ebebeb;
+    color: var(--body);
+  }
+
+  .contact-table tr:last-child td {
+    border-bottom: 1px solid #ebebeb;
+  }
+
+  .contact-table td:first-child {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gray);
+    width: 36%;
+    padding-top: 0.95rem;
+  }
+
+  .contact-table a {
+    color: var(--body);
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+    transition: border-color 0.2s;
+  }
+
+  .contact-table a:hover { border-color: var(--body); }
+
+  /* FOOTER — logo otsikon kohdalla, yhteystiedot sisällön kohdalla */
+  .footer-wrap {
+    width: 88%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 8rem 0 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-row {
+    position: relative;
+    min-height: 180px;
+  }
+
+  .footer-logo {
+    width: clamp(80px, 10vw, 140px);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  .footer-logo img {
+    width: 100%;
+    display: block;
+  }
+
+  /* Yhteystiedot keskellä, samalla leveydellä ja kohdistuksella kuin .container */
+  .footer-contact {
+    width: calc(50% / 0.88);   /* container on 50% body-leveydestä, footer-wrap on 88% body-leveydestä */
+    max-width: calc(900px);
+    margin: 0 auto;
+  }
+
+  .footer-contact h4 {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 1rem;
+  }
+
+  .footer-contact p {
+    font-family: var(--sans);
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: var(--body);
+    line-height: 1.85;
+  }
+
+  .footer-bottom {
+    margin-top: 4rem;
+  }
+
+  .footer-bottom p {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--light-gray);
     text-transform: uppercase;
   }
 
-  @media (max-width: 560px) {
+  /* MOBILE */
+  @media (max-width: 1200px) {
+    .container { width: 60%; }
+    .footer-contact { width: calc(60% / 0.88); }
+  }
+
+  @media (max-width: 900px) {
+    .container { width: 75%; }
+    .header-display { width: 90%; }
+    .footer-wrap { width: 90%; }
+    .footer-contact { width: calc(75% / 0.9); }
+  }
+
+  @media (max-width: 700px) {
+    .container { width: 88%; }
+    .header-display { width: 88%; padding-top: 5rem; }
+    .footer-wrap { width: 88%; }
+    .footer-row { min-height: auto; }
+    .footer-logo { position: static; margin-bottom: 2rem; }
+    .footer-contact { width: 100%; }
     .services-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .contact-table td:first-child { width: 44%; }
+    .form-fields { grid-template-columns: 1fr; }
+    .nav-row { flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+    nav a { margin-right: 1rem; }
   }
 </style>
 </head>
 <body>
 
+<div class="header-display">
+  <h1 class="display-name">
+    <span>Olli</span>
+    <span>Rajalin</span>
+  </h1>
+</div>
+
 <div class="container">
 
   <header>
-    <p class="site-name">Olli Rajalin</p>
-    <nav>
-      <a onclick="document.getElementById('palvelut').scrollIntoView({behavior:'smooth'})">Palvelut</a>
-      <a onclick="document.getElementById('yhteystiedot').scrollIntoView({behavior:'smooth'})">Yhteystiedot</a>
-    </nav>
+    <div class="nav-row">
+      <nav>
+        <a onclick="document.getElementById('palvelut').scrollIntoView({behavior:'smooth'})" data-fi="Palvelut" data-en="Services">Palvelut</a>
+        <a onclick="document.getElementById('lataukset').scrollIntoView({behavior:'smooth'})">CV / Portfolio</a>
+        <a onclick="document.querySelector('footer').scrollIntoView({behavior:'smooth'})" data-fi="Yhteystiedot" data-en="Contact">Yhteystiedot</a>
+      </nav>
+      <div class="lang-toggle">
+        <button id="lang-fi" class="active" onclick="setLang('fi')">FI</button>
+        <span class="lang-sep">/</span>
+        <button id="lang-en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
   </header>
 
   <div class="intro">
-    <p class="intro-text">
-      Olen rakennusarkkitehti-opiskelija Helsingistä.<br>
-      <br>
-      Tarvitseeko yrityksenne kehitysapua jonkin ongelman ratkaisuun,<br>
-      avustavia käsiä rakennushankkeiden eri vaiheisiin,<br>
-      tai järjestelmienne kehittämiseen?
+    <p class="intro-text" data-fi-html="Olen rakennusarkkitehti-opiskelija Helsingistä.<br><br>Tarvitseeko yrityksenne kehitysapua jonkin ongelman ratkaisuun, avustavia käsiä rakennushankkeiden eri vaiheisiin, tai järjestelmienne kehittämiseen?" data-en-html="I'm a construction architecture student based in Helsinki.<br><br>Does your company need development help with a problem, assisting hands at different stages of construction projects, or help developing your systems?">
+      Olen rakennusarkkitehti-opiskelija Helsingistä.<br><br>
+      Tarvitseeko yrityksenne kehitysapua jonkin ongelman ratkaisuun, avustavia käsiä rakennushankkeiden eri vaiheisiin, tai järjestelmienne kehittämiseen?
     </p>
   </div>
 
   <section id="palvelut">
-    <p class="section-label">Palvelut</p>
+    <p class="section-label" data-fi="Palvelut" data-en="Services">Palvelut</p>
     <div class="services-grid">
-
       <div>
-        <p class="service-title">Rakennussuunnittelu</p>
-        <p class="service-desc">Avustavat rakennussuunnittelun tehtävät, esimerkiksi: Lähtötietojen selvitys, RHS, tietomallinnus.</p>
+        <p class="service-title" data-fi="Rakennussuunnittelu" data-en="Architectural design">Rakennussuunnittelu</p>
+        <p class="service-desc" data-fi="Avustavat rakennussuunnittelun tehtävät, esimerkiksi: lähtötietojen selvitys, RHS, tietomallinnus." data-en="Assisting tasks in architectural design, for example: background research, building information modelling.">Avustavat rakennussuunnittelun tehtävät, esimerkiksi: lähtötietojen selvitys, RHS, tietomallinnus.</p>
       </div>
-
       <div>
-        <p class="service-title">Automaatio</p>
-        <p class="service-desc">Suunnittelu -ja tiedonkäsittelyprosessien automatisointi.</p>
+        <p class="service-title" data-fi="Automaatio" data-en="Automation">Automaatio</p>
+        <p class="service-desc" data-fi="Suunnittelu- ja tiedonkäsittelyprosessien automatisointi." data-en="Automation of design and data processing workflows.">Suunnittelu- ja tiedonkäsittelyprosessien automatisointi.</p>
       </div>
-
       <div>
-        <p class="service-title">Visualisointi</p>
-        <p class="service-desc">Planssien ja analyysidiagrammien laatiminen, sekä havainnekuvien rendaaminen ja masterointi.</p>
+        <p class="service-title" data-fi="Visualisointi" data-en="Visualisation">Visualisointi</p>
+        <p class="service-desc" data-fi="Planssien ja analyysidiagrammien laatiminen, sekä havainnekuvien rendaaminen ja masterointi." data-en="Preparation of layout sheets and analysis diagrams, plus rendering and mastering of visualisations.">Planssien ja analyysidiagrammien laatiminen, sekä havainnekuvien rendaaminen ja masterointi.</p>
       </div>
-
       <div>
-        <p class="service-title">Konsultointi</p>
-        <p class="service-desc">Esimerkiksi uudessa rakentamislaissa määritetyt tietomallivaatimukset.</p>
+        <p class="service-title" data-fi="Konsultointi" data-en="Consulting">Konsultointi</p>
+        <p class="service-desc" data-fi="Esimerkiksi uudessa rakentamislaissa määritetyt tietomallivaatimukset." data-en="For example, the BIM requirements set out in the new Finnish Building Act.">Esimerkiksi uudessa rakentamislaissa määritetyt tietomallivaatimukset.</p>
       </div>
-
     </div>
   </section>
 
   <section id="lataukset">
-    <p class="section-label">Lataukset</p>
+    <p class="section-label">CV / Portfolio</p>
 
     <div class="download-item">
       <div class="download-header">
-        <span class="download-title">Lataa CV</span>
+        <span class="download-title" data-fi="Lataa CV" data-en="Download CV">Lataa CV</span>
         <span class="download-tag">PDF</span>
       </div>
-      <div class="download-gate">
-        <input type="email" id="cv-email" placeholder="sähköpostiosoitteesi" autocomplete="off" oninput="checkEmail('cv')">
-        <button class="download-btn" id="cv-btn" onclick="handleDownload('cv', 'cv.pdf')">Katsele / Lataa</button>
+      <div class="form-fields">
+        <div class="field">
+          <label class="field-label" data-fi="Yritys / Organisaatio" data-en="Company / Organisation">Yritys / Organisaatio</label>
+          <input type="text" id="cv-company" autocomplete="off">
+        </div>
+        <div class="field">
+          <label class="field-label"><span data-fi="Nimi" data-en="Name">Nimi</span> <span class="required">*</span></label>
+          <input type="text" id="cv-name" autocomplete="off" oninput="checkForm('cv')">
+        </div>
       </div>
-      <p class="download-note" id="cv-note">Syötä sähköposti avataksesi latauksen.</p>
+      <div class="download-action">
+        <p class="download-note" id="cv-note" data-fi="* Pakollinen kenttä" data-en="* Required field">* Pakollinen kenttä</p>
+        <button class="download-btn" id="cv-btn" onclick="handleDownload('cv', 'cv.pdf')" data-fi="Katsele / Lataa" data-en="View / Download">Katsele / Lataa</button>
+      </div>
     </div>
 
     <div class="download-item">
       <div class="download-header">
-        <span class="download-title">Lataa Portfolio</span>
+        <span class="download-title" data-fi="Lataa Portfolio" data-en="Download Portfolio">Lataa Portfolio</span>
         <span class="download-tag">PDF</span>
       </div>
-      <div class="download-gate">
-        <input type="email" id="portfolio-email" placeholder="sähköpostiosoitteesi" autocomplete="off" oninput="checkEmail('portfolio')">
-        <button class="download-btn" id="portfolio-btn" onclick="handleDownload('portfolio', 'portfolio2.pdf')">Katsele / Lataa</button>
+      <div class="form-fields">
+        <div class="field">
+          <label class="field-label" data-fi="Yritys / Organisaatio" data-en="Company / Organisation">Yritys / Organisaatio</label>
+          <input type="text" id="portfolio-company" autocomplete="off">
+        </div>
+        <div class="field">
+          <label class="field-label"><span data-fi="Nimi" data-en="Name">Nimi</span> <span class="required">*</span></label>
+          <input type="text" id="portfolio-name" autocomplete="off" oninput="checkForm('portfolio')">
+        </div>
       </div>
-      <p class="download-note" id="portfolio-note">Syötä sähköposti avataksesi latauksen.</p>
+      <div class="download-action">
+        <p class="download-note" id="portfolio-note" data-fi="* Pakollinen kenttä" data-en="* Required field">* Pakollinen kenttä</p>
+        <button class="download-btn" id="portfolio-btn" onclick="handleDownload('portfolio', 'portfolio2.pdf')" data-fi="Katsele / Lataa" data-en="View / Download">Katsele / Lataa</button>
+      </div>
     </div>
-
   </section>
 
-  <section id="yhteystiedot">
-    <p class="section-label">Yhteystiedot</p>
-    <table class="contact-table">
-      <tr>
-        <td>Sähköposti</td>
-        <td>olli.rajalin2001(at)gmail.com</a></td>
-      </tr>
-      <tr>
-        <td>Puhelin</td>
-        <td><a href="tel:+358440511011">+358 44 051 1011</a></td>
-      </tr>
-      <tr>
-        <td>Sijainti</td>
-        <td>Helsinki, Suomi</td>
-      </tr>
-      <tr>
-        <td>Y-tunnus</td>
-        <td>3620904-1</td>
-      </tr>
-    </table>
+  <section id="yhteystiedot" style="display:none">
+    <p class="section-label" data-fi="Yhteystiedot" data-en="Contact">Yhteystiedot</p>
   </section>
-
-  <footer>
-    <p>&copy; 2026 Olli Rajalin</p>
-  </footer>
 
 </div>
+
+<footer class="footer-wrap">
+  <div class="footer-row">
+    <div class="footer-logo">
+      <img src="O.svg" alt="OKR">
+    </div>
+    <div class="footer-contact">
+      <h4 data-fi="Yhteystiedot" data-en="Contact">Yhteystiedot</h4>
+      <p>Olli Rajalin</p>
+      <p>olli.rajalin2001(at)gmail.com</p>
+      <p>+358 44 051 1011</p>
+      <p data-fi="Helsinki, Suomi" data-en="Helsinki, Finland">Helsinki, Suomi</p>
+      <p data-fi="Y-tunnus 3620904-1" data-en="Business ID 3620904-1">Y-tunnus 3620904-1</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Olli Rajalin</p>
+  </div>
+</footer>
 
 <script>
   var ACCESS_KEY = 'ce32550c-ba0d-4e9a-b16c-9dcadc1f6adc';
 
-  function isValidEmail(val) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.trim());
+  function setLang(lang) {
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-fi]').forEach(function(el) {
+      var val = el.getAttribute('data-' + lang);
+      if (val !== null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-fi-html]').forEach(function(el) {
+      var val = el.getAttribute('data-' + lang + '-html');
+      if (val !== null) el.innerHTML = val;
+    });
+    document.getElementById('lang-fi').classList.toggle('active', lang === 'fi');
+    document.getElementById('lang-en').classList.toggle('active', lang === 'en');
   }
 
-  function checkEmail(id) {
-    var input = document.getElementById(id + '-email');
+  function checkForm(id) {
+    var name = document.getElementById(id + '-name').value.trim();
     var btn = document.getElementById(id + '-btn');
-    var note = document.getElementById(id + '-note');
-    var valid = isValidEmail(input.value);
-    if (valid) {
-      btn.classList.add('active');
-      note.textContent = 'Voit nyt ladata tiedoston.';
-      note.classList.add('valid');
-    } else {
-      btn.classList.remove('active');
-      note.textContent = 'Syötä sähköposti avataksesi latauksen.';
-      note.classList.remove('valid');
-    }
+    btn.classList.toggle('active', name.length > 0);
   }
 
   function handleDownload(id, filename) {
-    var input = document.getElementById(id + '-email');
-    var email = input.value.trim();
-    if (!isValidEmail(email)) return;
+    var name = document.getElementById(id + '-name').value.trim();
+    var company = document.getElementById(id + '-company').value.trim();
+    if (name.length === 0) return;
 
     var btn = document.getElementById(id + '-btn');
     var note = document.getElementById(id + '-note');
+    var lang = document.documentElement.lang;
 
-    btn.textContent = 'Ladataan...';
+    btn.textContent = (lang === 'en') ? 'Loading...' : 'Ladataan...';
     btn.classList.remove('active');
 
     fetch('https://api.web3forms.com/submit', {
@@ -402,21 +583,22 @@
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
       body: JSON.stringify({
         access_key: ACCESS_KEY,
-        email: email,
         subject: 'Lataus: ' + filename,
-        message: 'Tiedosto ladattu: ' + filename + '\nLataajan sähköposti: ' + email
+        message: 'Tiedosto: ' + filename +
+                 '\nNimi: ' + name +
+                 '\nYritys: ' + (company || '-')
       })
     })
     .then(function() {
       window.open(filename, '_blank');
-      note.textContent = 'Kiitos! Lataus alkaa hetken kuluttua.';
+      note.textContent = (lang === 'en') ? 'Thank you! Download starting...' : 'Kiitos! Lataus alkaa hetken kuluttua.';
       note.classList.add('valid');
-      btn.textContent = 'Katsele';
+      btn.textContent = (lang === 'en') ? 'View' : 'Katsele';
       btn.classList.add('active');
     })
     .catch(function() {
       window.open(filename, '_blank');
-      btn.textContent = 'Katsele';
+      btn.textContent = (lang === 'en') ? 'View' : 'Katsele';
       btn.classList.add('active');
     });
   }
